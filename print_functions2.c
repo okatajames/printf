@@ -1,10 +1,10 @@
 #include "main.h"
 
 
-/****************** PRINT POINTER ******************/
+/** print pointer **/
 /**
  * print_pointer - Prints the value of a pointer variable
- * @types: List a of arguments
+ * @types: List of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width
