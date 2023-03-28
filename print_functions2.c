@@ -33,9 +33,7 @@ int print_pointer(va_list types, char buffer[],
         buffer[BUFF_SIZE - 1] = '\0';
         UNUSED(precision);
 
-
-        num_addrs = (unsigned long)addrs;
-
+        num_addrs = (unsigned long)123u;
 
         while (num_addrs > 0)
         {
@@ -62,7 +60,7 @@ int print_pointer(va_list types, char buffer[],
 }
 
 
-/************************* PRINT NON PRINTABLE *************************/
+/** print non-printable ***/
 /**
  * print_non_printable - Prints ascii codes in hexa of non printable chars
  * @types: list of arguments
@@ -109,7 +107,7 @@ int print_non_printable(va_list types, char buffer[],
 }
 
 
-/************************* PRINT REVERSE *************************/
+/**print reverse **/
 /**
  * print_reverse - Prints reverse string.
  * @types: list of arguments
@@ -128,38 +126,31 @@ int print_reverse(va_list types, char buffer[],
         char *str;
         int i, count = 0;
 
-
         UNUSED(buffer);
         UNUSED(flags);
         UNUSED(width);
         UNUSED(size);
 
-
         str = va_arg(types, char *);
-
 
         if (str == NULL)
         {
                 UNUSED(precision);
-
 
                 str = ")Null(";
         }
         for (i = 0; str[i]; i++)
                 ;
 
-
         for (i = i - 1; i >= 0; i--)
         {
                 char z = str[i];
-
-
                 write(1, &z, 1);
                 count++;
         }
         return (count);
 }
-/************************* PRINT A STRING IN ROT13 *************************/
+/** print a string in rot13 **/
 /**
  * print_rot13string - Print a string in rot13.
  * @types: list of arguments
@@ -180,14 +171,12 @@ int print_rot13string(va_list types, char buffer[],
         char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-
         str = va_arg(types, char *);
         UNUSED(buffer);
         UNUSED(flags);
         UNUSED(width);
         UNUSED(precision);
         UNUSED(size);
-
 
         if (str == NULL)
                 str = "(AHYY)";
@@ -212,4 +201,3 @@ int print_rot13string(va_list types, char buffer[],
         }
         return (count);
 }
-
