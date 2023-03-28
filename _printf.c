@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
     if (format == NULL)
     {
         return (-1);
-    }//remove the curly if this does not work
+    }
     
     va_start(list, format);
     for(i =0; format && format[i] != '\0'; i++)
@@ -44,8 +44,8 @@ int _printf(const char *format, ...)
             if (printed == -1)
             {
                 return (-1);
-            } // Remove these curly if the code does not work
-            printed_chars += printed
+            }
+            printed_chars += printed;
         }
     }
     print_buffer(buffer, &buff_ind);

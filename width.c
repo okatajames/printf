@@ -8,7 +8,7 @@
 * Return: width
 */
 
-int get_width(const char, *format, int *i, va_list list)
+int get_width(const char  *format, int *i, va_list list)
 {
     int curr_i;
     int width = 0;
