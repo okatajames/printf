@@ -1,8 +1,6 @@
 #include "main.h"
 
-
-/************************* PRINT CHAR *************************/
-
+/** print char **/
 
 /**
  * print_char - Prints a char
@@ -14,15 +12,15 @@
  * @size: Size specifier
  * Return: Number of chars printed
  */
+
 int print_char(va_list types, char buffer[],
         int flags, int width, int precision, int size)
 {
         char c = va_arg(types, int);
 
-
         return (handle_write_char(c, buffer, flags, width, precision, size));
 }
-/************************* PRINT A STRING *************************/
+/** print a string **/
 /**
  * print_string - Prints a string
  * @types: list of arguments
@@ -33,12 +31,12 @@ int print_char(va_list types, char buffer[],
  * @size: Size specifier
  * Return: Number of chars printed
  */
+
 int print_string(va_list types, char buffer[],
         int flags, int width, int precision, int size)
 {
         int length = 0, i;
         char *str = va_arg(types, char *);
-
 
         UNUSED(buffer);
         UNUSED(flags);
@@ -52,14 +50,14 @@ int print_string(va_list types, char buffer[],
                         str = "      ";
         }
 
-
         while (str[length] != '\0')
+        {        
                 length++;
-
-
+        }
         if (precision >= 0 && precision < length)
+        {
                 length = precision;
-
+        }
 
         if (width > length)
         {
@@ -82,7 +80,7 @@ int print_string(va_list types, char buffer[],
 
         return (write(1, str, length));
 }
-/************************* PRINT PERCENT SIGN *************************/
+/** print percent sign **/
 /**
  * print_percent - Prints a percent sign
  * @types: list of arguments
@@ -158,7 +156,7 @@ int print_int(va_list types, char buffer[],
 }
 
 
-/************************* PRINT BINARY *************************/
+/** print binary **/
 /**
  * print_binary - Prints an unsigned number
  * @types: list of arguments
