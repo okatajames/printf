@@ -1,8 +1,6 @@
 #include "main.h"
 
-
 void print_buffer(char buffer[], int *buff_ind);
-
 
 /**
  * _printf - Printf function
@@ -16,13 +14,10 @@ int _printf(const char *format, ...)
         va_list list;
         char buffer[BUFF_SIZE];
 
-
         if (format == NULL)
                 return (-1);
 
-
         va_start(list, format);
-
 
         for (i = 0; format && format[i] != '\0'; i++)
         {
@@ -50,16 +45,12 @@ int _printf(const char *format, ...)
                 }
         }
 
-
         print_buffer(buffer, &buff_ind);
-
 
         va_end(list);
 
-
         return (printed_chars);
 }
-
 
 /**
  * print_buffer - Prints the contents of the buffer if it exist
@@ -70,7 +61,6 @@ void print_buffer(char buffer[], int *buff_ind)
 {
         if (*buff_ind > 0)
                 write(1, &buffer[0], *buff_ind);
-
 
         *buff_ind = 0;
 }
