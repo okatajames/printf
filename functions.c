@@ -1,40 +1,44 @@
 #include "main.h"
 
-/**PRINT CHAR**/
-/**
- * print_char - prints a char
- * by James and Aggrey
- * @types: llist of arguments
- * @buffer: buffer array to handle print
- * @flags: calculates avtive flags
- * @width: width specification
- * @precision: precision specification
- * @size: size specifier
- * Return: number of chars printed
- */
 
-int print_char(va_list types, char buffer[], int flags, int width, int precision, int size)
+/************************* PRINT CHAR *************************/
+
+
+/**
+ * print_char - Prints a char
+ * @types: List a of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: Width
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
+ */
+int print_char(va_list types, char buffer[],
+        int flags, int width, int precision, int size)
 {
-    char c = va_arg(types, int);
-    return (handle_write_char(c, buffer, flags, width, precision, size));
+        char c = va_arg(types, int);
+
+
+        return (handle_write_char(c, buffer, flags, width, precision, size));
 }
-
-/** print string **/
+/************************* PRINT A STRING *************************/
 /**
- * print_string - prints a string
- * @types: list of args
- * @buffer: buffer array to handle print
- * @flags: calculate active flags
- * @width: gets the width
- * @precision: precision specification
- * @size: size specifier
- * Return: number of characters printed
+ * print_string - Prints a string
+ * @types: List a of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
  */
-
-int print_string(va_list types, char buffer[], int flags, int width, int precision, int size)
+int print_string(va_list types, char buffer[],
+        int flags, int width, int precision, int size)
 {
-    int length = 0, i;
-    char *str = va_arg(types, char *);
+        int length = 0, i;
+        char *str = va_arg(types, char *);
+
 
         UNUSED(buffer);
         UNUSED(flags);
@@ -47,6 +51,7 @@ int print_string(va_list types, char buffer[], int flags, int width, int precisi
                 if (precision >= 6)
                         str = "      ";
         }
+
 
         while (str[length] != '\0')
                 length++;
@@ -74,13 +79,13 @@ int print_string(va_list types, char buffer[], int flags, int width, int precisi
                 }
         }
 
+
         return (write(1, str, length));
 }
-
-/** print % percent sign **/
+/************************* PRINT PERCENT SIGN *************************/
 /**
  * print_percent - Prints a percent sign
- * @types: List of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -88,7 +93,8 @@ int print_string(va_list types, char buffer[], int flags, int width, int precisi
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int print_percent(va_list types, char buffer[], int flags, int width, int precision, int size)
+int print_percent(va_list types, char buffer[],
+        int flags, int width, int precision, int size)
 {
         UNUSED(types);
         UNUSED(buffer);
@@ -100,10 +106,10 @@ int print_percent(va_list types, char buffer[], int flags, int width, int precis
 }
 
 
-/** print int **/
+/************************* PRINT INT *************************/
 /**
  * print_int - Print int
- * @types: list of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -111,22 +117,25 @@ int print_percent(va_list types, char buffer[], int flags, int width, int precis
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int print_int(va_list types, char buffer[], int flags, int width, int precision, int size)
+int print_int(va_list types, char buffer[],
+        int flags, int width, int precision, int size)
 {
         int i = BUFF_SIZE - 2;
         int is_negative = 0;
         long int n = va_arg(types, long int);
         unsigned long int num;
 
+
         n = convert_size_number(n, size);
 
+
         if (n == 0)
-               { 
                 buffer[i--] = '0';
-                }
+
 
         buffer[BUFF_SIZE - 1] = '\0';
         num = (unsigned long int)n;
+
 
         if (n < 0)
         {
@@ -141,15 +150,18 @@ int print_int(va_list types, char buffer[], int flags, int width, int precision,
                 num /= 10;
         }
 
+
         i++;
+
 
         return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
-/** print binary **/
+
+/************************* PRINT BINARY *************************/
 /**
  * print_binary - Prints an unsigned number
- * @types: list of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -157,11 +169,10 @@ int print_int(va_list types, char buffer[], int flags, int width, int precision,
  * @size: Size specifier
  * Return: Numbers of char printed.
  */
-int print_binary(va_list types, char buffer[], int flags, int width, int precision, int size)
+int print_binary(va_list types, char buffer[],
+        int flags, int width, int precision, int size)
 {
-        unsigned int n, i, sum;
-         unsigned int m;
-
+        unsigned int n, m, i, sum;
         unsigned int a[32];
         int count;
 
@@ -172,8 +183,9 @@ int print_binary(va_list types, char buffer[], int flags, int width, int precisi
         UNUSED(precision);
         UNUSED(size);
 
+
         n = va_arg(types, unsigned int);
-        m = 2147483648U;
+        m = 2147483648U; 
         a[0] = n / m;
         for (i = 1; i < 32; i++)
         {
@@ -186,6 +198,7 @@ int print_binary(va_list types, char buffer[], int flags, int width, int precisi
                 if (sum || i == 31)
                 {
                         char z = '0' + a[i];
+
 
                         write(1, &z, 1);
                         count++;

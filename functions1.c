@@ -1,10 +1,10 @@
 #include "main.h"
 
 
-/** print unsgined number **/
+/************************* PRINT UNSIGNED NUMBER *************************/
 /**
  * print_unsigned - Prints an unsigned number
- * @types: list of arguments
+ * @types: List a of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width
@@ -43,10 +43,10 @@ int print_unsigned(va_list types, char buffer[],
 }
 
 
-/** print unsigned number in octal **/
+/************* PRINT UNSIGNED NUMBER IN OCTAL  ****************/
 /**
  * print_octal - Prints an unsigned number in octal notation
- * @types: list of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width
@@ -83,10 +83,11 @@ int print_octal(va_list types, char buffer[],
                 num /= 8;
         }
 
+
         if (flags & F_HASH && init_num != 0)
-               { 
                 buffer[i--] = '0';
-                }
+
+
         i++;
 
 
@@ -94,10 +95,10 @@ int print_octal(va_list types, char buffer[],
 }
 
 
-/** print unsigned number in hexa **/
+/************** PRINT UNSIGNED NUMBER IN HEXADECIMAL **************/
 /**
  * print_hexadecimal - Prints an unsigned number in hexadecimal notation
- * @types: list of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width
@@ -113,10 +114,10 @@ int print_hexadecimal(va_list types, char buffer[],
 }
 
 
-/** print unsigned number in upper hexa **/
+/************* PRINT UNSIGNED NUMBER IN UPPER HEXADECIMAL **************/
 /**
  * print_hexa_upper - Prints an unsigned number in upper hexadecimal notation
- * @types: list of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width
@@ -132,10 +133,10 @@ int print_hexa_upper(va_list types, char buffer[],
 }
 
 
-/** print hex num in lower or upper **/
+/************** PRINT HEXX NUM IN LOWER OR UPPER **************/
 /**
  * print_hexa - Prints a hexadecimal number in lower or upper
- * @types: list of arguments
+ * @types: Lista of arguments
  * @map_to: Array of values to map the number to
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
@@ -173,6 +174,7 @@ int print_hexa(va_list types, char map_to[], char buffer[],
                 num /= 16;
         }
 
+
         if (flags & F_HASH && init_num != 0)
         {
                 buffer[i--] = flag_ch;
@@ -185,3 +187,4 @@ int print_hexa(va_list types, char map_to[], char buffer[],
 
         return (write_unsgnd(0, i, buffer, flags, width, precision, size));
 }
+
